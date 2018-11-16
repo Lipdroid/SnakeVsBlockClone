@@ -69,9 +69,9 @@ public class SnakeMovement : MonoBehaviour {
 
 		float maxX = Camera.main.orthographicSize * Screen.width / Screen.height;
 		if (BodyParts.Count > 0) {
-			if(BodyParts [0].position > maxX){
+			if(BodyParts [0].position.x > maxX){
 				BodyParts [0].position = new Vector3 (maxX - 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
-			}else if(BodyParts [0].position < - maxX){
+			}else if(BodyParts [0].position.x < - maxX){
 				BodyParts [0].position = new Vector3 (-maxX + 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
 			}
 		}
@@ -114,7 +114,7 @@ public class SnakeMovement : MonoBehaviour {
 		Transform newPart;
 		if (firstPart) {
 			newPart = (Instantiate (BodyPrefab, new Vector3 (0, 0, 0), Quaternion.identity) as GameObject).transform;
-			PartsAmountTextMesh.transform.parent = newPart.position + new Vector3 (0, 0.5f, 0);
+			PartsAmountTextMesh.transform.parent.position = newPart.position + new Vector3 (0, 0.5f, 0);
 			firstPart = false;
 		} else {
 			newPart = (Instantiate (BodyPrefab, BodyParts[BodyParts.Count -1].position, BodyParts[BodyParts.Count -1].rotation) as GameObject).transform;
