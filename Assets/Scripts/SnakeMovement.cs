@@ -50,12 +50,12 @@ public class SnakeMovement : MonoBehaviour {
 	}
 
 	void Update(){
-//		if (GameController.gamestate == GameController.GameState.GAME) {
-//			Move ();
-//			if (BodyParts.Count == 0) {
-//				GC.SetGameover ();
-//			}
-//		}
+		if (GameController.gameState == GameController.GameState.GAME) {
+			Move ();
+			if (BodyParts.Count == 0) {
+				GC.SetGameover ();
+			}
+		}
 		if (PartsAmountTextMesh != null) {
 			PartsAmountTextMesh.text = transform.childCount + "";
 		}
