@@ -78,7 +78,7 @@ public class SnakeMovement : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0)) {
 			mousePreviousPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		} else if (Input.GetMouseButtonDown (0)) {
+		} else if (Input.GetMouseButtonDown (1)) {
 			if (BodyParts.Count > 0 && Mathf.Abs (BodyParts [0].position.x) < maxX) {
 				mouseCurrentPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 				float deltaMousePos = Mathf.Abs (mousePreviousPos.x - mouseCurrentPos.x);

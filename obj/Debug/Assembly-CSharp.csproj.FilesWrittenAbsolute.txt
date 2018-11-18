@@ -21,3 +21,7 @@
 /Users/lipuhossain/Documents/Unity Projects/SnakeVsBlockClone/Temp/bin/Debug/Unity.CecilTools.dll
 /Users/lipuhossain/Documents/Unity Projects/SnakeVsBlockClone/Temp/bin/Debug/Unity.Cecil.Pdb.dll
 /Users/lipuhossain/Documents/Unity Projects/SnakeVsBlockClone/Temp/bin/Debug/Unity.Cecil.Mdb.dll
+/Users/lipuhossain/Documents/Unity Projects/SnakeVsBlockClone/Temp/bin/Debug/Assembly-CSharp.dll.mdb
+/Users/lipuhossain/Documents/Unity Projects/SnakeVsBlockClone/Temp/bin/Debug/Assembly-CSharp.dll
+/Users/lipuhossain/Documents/Unity Projects/SnakeVsBlockClone/obj/Debug/Assembly-CSharp.dll
+/Users/lipuhossain/Documents/Unity Projects/SnakeVsBlockClone/obj/Debug/Assembly-CSharp.dll.mdb
