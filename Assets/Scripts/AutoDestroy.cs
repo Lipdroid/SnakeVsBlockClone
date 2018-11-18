@@ -99,11 +99,44 @@ public class AutoDestroy : MonoBehaviour {
 	}
 
 	public void SetBoxColor(){
+		Color32 thisImageColor = GetComponent<SpriteRenderer> ().color;
+		if (lifeForColor > maxLifeForRed) {
+			thisImageColor = new Color32 (255, 0, 0, 255);
+		} else if (lifeForColor >= maxLifeForRed / 2 && lifeForColor <= maxLifeForRed) {
+			thisImageColor = new Color32 (255, (byte)(510 * (1 - (lifeForColor / maxLifeForRed))), 0, 255);
+		}else if (lifeForColor >= maxLifeForRed / 2 && lifeForColor <= maxLifeForRed) {
+			thisImageColor = new Color32 ((byte)(510 * (lifeForColor / maxLifeForRed)), 255, 0, 255);
+		}
+		GetComponent<SpriteRenderer> ().color = thisImageColor;
 	}
 
 	void SetBoxSize(){
 		float x;
 		float y;
 		transform.localScale *= (float)Screen.width / (float)Screen.height / (9f / 16f);
+	}
+
+	private void OnTriggerEnter2d(Collider2D collision){
+		if (collision.transform.tag == "SimpleBox" && transform.tag == "Box") {
+			Destroy (collision.transform.gameObject);
+		}else if(transform.tag == "SimpleBox" && collision.transform.tag == "SimpleBox"){
+			Destroy (collision.transform.gameObject);
+		}
+	}
+
+	private void OnTriggerStay2d(Collider2D collision){
+		if (collision.transform.tag == "SimpleBox" && transform.tag == "Box") {
+			Destroy (collision.transform.gameObject);
+		}else if(transform.tag == "SimpleBox" && collision.transform.tag == "SimpleBox"){
+			Destroy (collision.transform.gameObject);
+		}
+	}
+
+	private void OnCollisionStay2d(Collision2D collision){
+		if (collision.transform.tag == "SimpleBox" && transform.tag == "Box") {
+			Destroy (collision.transform.gameObject);
+		}else if(collision.transform.tag == "SimpleBox" && transform.tag == "SimpleBox"){
+			Debug.Log("OverLapping");
+		}
 	}
 }

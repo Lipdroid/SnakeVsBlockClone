@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoodManager : MonoBehaviour {
 	[Header("Snake Manager")]
-	public SnakeMovement SM;
+	 SnakeMovement SM;
 
 	[Header("Food Variable")]
 	public GameObject FoodPrefab;
@@ -12,10 +12,10 @@ public class FoodManager : MonoBehaviour {
 
 	[Header("Time to spawn Management")]
 	public float timeBetweenFoodSpawn;
-	public float thisTime;
+    float thisTime;
 
 	void Start () {
-		SM = GameObject.FindGameObjectWithTag ("SnakeManger").GetComponent<SnakeMovement> ();
+		SM = GameObject.FindGameObjectWithTag ("SnakeManager").GetComponent<SnakeMovement> ();
 		SpawnFood ();
 	}
 	

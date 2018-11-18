@@ -55,6 +55,14 @@ public class GameController : MonoBehaviour {
 
 	}
 
+	public void SetGame(){
+		gameState = GameState.GAME;
+		DisableCG (Menu_CG);
+		EnableCG (GAME_CG);
+		DisableCG (GAMEOVER_CG);
+
+	}
+
 	public void SetGameover(){
 		gameState = GameState.GAMEOVER;
 		DisableCG (Menu_CG);
@@ -70,6 +78,13 @@ public class GameController : MonoBehaviour {
 		}
 
 		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Snake")) {
+			Destroy (g);
+		}
+
+		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Food")) {
+			Destroy (g);
+		}
+		foreach (GameObject g in GameObject.FindGameObjectsWithTag("Box")) {
 			Destroy (g);
 		}
 

@@ -6,6 +6,10 @@ TagManager:
   tags:
   - SnakeManager
   - Snake
+  - Box
+  - Food
+  - Bar
+  - SimpleBox
   layers:
   - Default
   - TransparentFX
