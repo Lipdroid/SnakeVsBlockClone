@@ -25,7 +25,7 @@ public class SnakeMovement : MonoBehaviour {
 	private float distance;
 	private Vector3 refVelocity;
 	private Transform curBodyPart;
-	private Transform prevBodyOart;
+	private Transform prevBodyPart;
 	private bool firstPart;
 
 	[Header("MouseControl Variable")]
@@ -96,10 +96,10 @@ public class SnakeMovement : MonoBehaviour {
 
 		for (int i = 1; i < BodyParts.Count; i++) {
 			curBodyPart = BodyParts [i];
-			prevBodyOart = BodyParts [i - 1];
+			prevBodyPart = BodyParts [i - 1];
 
-			distance = Vector3.Distance (prevBodyOart.position, curBodyPart.position);
-			Vector3 newPos = prevBodyOart.position;
+			distance = Vector3.Distance (prevBodyPart.position, curBodyPart.position);
+			Vector3 newPos = prevBodyPart.position;
 			newPos.z = BodyParts [0].position.z;
 
 			Vector3 pos = curBodyPart.position;
