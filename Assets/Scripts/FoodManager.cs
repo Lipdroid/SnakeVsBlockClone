@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoodManager : MonoBehaviour {
 	[Header("Snake Manager")]
-	 SnakeMovement SM;
+    SnakeMovement SM;
 
 	[Header("Food Variable")]
 	public GameObject FoodPrefab;
