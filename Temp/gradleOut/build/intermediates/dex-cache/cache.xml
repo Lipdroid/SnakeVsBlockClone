@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/mdmunirhossain/Documents/UnityProjects/SnakeVsBlockClone/Temp/gradleOut/libs/unity-classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="28.0.0"
+        sha1="c6eace347a88d2038dc7d81c32c6f9612fc663cb">
+        <dex dex="/Users/mdmunirhossain/Documents/UnityProjects/SnakeVsBlockClone/Temp/gradleOut/build/intermediates/pre-dexed/release/unity-classes_0e843ac2c78248dcb56eb97d78a9bf69724b9ab7.jar" />
+    </item>
+
+</items>

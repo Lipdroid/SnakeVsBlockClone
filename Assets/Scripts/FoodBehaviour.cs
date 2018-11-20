@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class FoodBehaviour : MonoBehaviour {
 	[Header("SnakeManager")]
-	SnakeMovement SM;
+    SnakeMovement SM;
 	public int foodAmount;
 
 	void Start () {
-		SM = transform.GetComponentInParent <SnakeMovement> ();
 		foodAmount = Random.Range (0,10);
 		transform.GetComponentInChildren <TextMesh> ().text = "" + foodAmount;
 	}
 	
 	void Update () {
+		SM = transform.parent.GetComponent <FoodManager> ().getSM();
 		if (SM.transform.childCount > 0 && transform.position.y - SM.transform.GetChild (0).position.y < -10) {
 			Destroy (this.gameObject);
 		}

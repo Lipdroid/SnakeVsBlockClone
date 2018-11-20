@@ -57,6 +57,9 @@ public class SnakeMovement : MonoBehaviour {
 			}
 		}
 		if (PartsAmountTextMesh != null) {
+			if (transform.childCount > 0) {
+				PartsAmountTextMesh.transform.position = transform.GetChild (0).position + new Vector3 (0, 0.5f, 0);
+			}
 			PartsAmountTextMesh.text = transform.childCount + "";
 		}
 	}
@@ -76,23 +79,43 @@ public class SnakeMovement : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetMouseButtonDown (0)) {
-			mousePreviousPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-		} else if (Input.GetMouseButtonDown (1)) {
-			if (BodyParts.Count > 0 && Mathf.Abs (BodyParts [0].position.x) < maxX) {
-				mouseCurrentPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-				float deltaMousePos = Mathf.Abs (mousePreviousPos.x - mouseCurrentPos.x);
-				float sign = Mathf.Sign (mousePreviousPos.x - mouseCurrentPos.x);
+		if (Input.touchCount > 0) {
+			if (Input.GetTouch (0).phase == TouchPhase.Began) {
+				mousePreviousPos = Camera.main.ScreenToWorldPoint (Input.GetTouch(0).position);
+			}else if(Input.GetTouch (0).phase == TouchPhase.Moved){
+				if (BodyParts.Count > 0 && Mathf.Abs (BodyParts [0].position.x) < maxX) {
+					mouseCurrentPos = Camera.main.ScreenToWorldPoint (Input.GetTouch(0).position);
+					float deltaMousePos = Mathf.Abs (mousePreviousPos.x - mouseCurrentPos.x);
+					float sign = Mathf.Sign (mousePreviousPos.x - mouseCurrentPos.x);
 
-				BodyParts [0].GetComponent <Rigidbody2D> ().AddForce (Vector2.right * rotationSpeed * deltaMousePos * -sign);
-				mousePreviousPos = mouseCurrentPos;
+					BodyParts [0].GetComponent <Rigidbody2D> ().AddForce (Vector2.right * rotationSpeed * deltaMousePos * -sign);
+					mousePreviousPos = mouseCurrentPos;
 
-			} else if (BodyParts.Count > 0 && BodyParts [0].position.x > maxX) {
-				BodyParts [0].position = new Vector3 (maxX - 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
-			} else if (BodyParts.Count > 0 && BodyParts [0].position.x < maxX) {
-				BodyParts [0].position = new Vector3 (-maxX + 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
+				} else if (BodyParts.Count > 0 && BodyParts [0].position.x > maxX) {
+					BodyParts [0].position = new Vector3 (maxX - 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
+				} else if (BodyParts.Count > 0 && BodyParts [0].position.x < maxX) {
+					BodyParts [0].position = new Vector3 (-maxX + 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
+				}
 			}
 		}
+
+//		if (Input.GetMouseButtonDown (0)) {
+//			mousePreviousPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+//		} else if (Input.GetMouseButtonDown (1)) {
+//			if (BodyParts.Count > 0 && Mathf.Abs (BodyParts [0].position.x) < maxX) {
+//				mouseCurrentPos = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+//				float deltaMousePos = Mathf.Abs (mousePreviousPos.x - mouseCurrentPos.x);
+//				float sign = Mathf.Sign (mousePreviousPos.x - mouseCurrentPos.x);
+//
+//				BodyParts [0].GetComponent <Rigidbody2D> ().AddForce (Vector2.right * rotationSpeed * deltaMousePos * -sign);
+//				mousePreviousPos = mouseCurrentPos;
+//
+//			} else if (BodyParts.Count > 0 && BodyParts [0].position.x > maxX) {
+//				BodyParts [0].position = new Vector3 (maxX - 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
+//			} else if (BodyParts.Count > 0 && BodyParts [0].position.x < maxX) {
+//				BodyParts [0].position = new Vector3 (-maxX + 0.01f, BodyParts [0].position.y, BodyParts [0].position.z);
+//			}
+//		}
 
 		for (int i = 1; i < BodyParts.Count; i++) {
 			curBodyPart = BodyParts [i];
@@ -114,6 +137,7 @@ public class SnakeMovement : MonoBehaviour {
 		Transform newPart;
 		if (firstPart) {
 			newPart = (Instantiate (BodyPrefab, new Vector3 (0, 0, 0), Quaternion.identity) as GameObject).transform;
+			PartsAmountTextMesh.transform.parent = newPart;
 			PartsAmountTextMesh.transform.parent.position = newPart.position + new Vector3 (0, 0.5f, 0);
 			firstPart = false;
 		} else {
@@ -121,7 +145,7 @@ public class SnakeMovement : MonoBehaviour {
 
 		}
 
-		newPart.SetParent (transform);
+		newPart.SetParent (transform);	
 		BodyParts.Add (newPart);
 	}
 
